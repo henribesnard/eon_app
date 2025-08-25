@@ -9,6 +9,8 @@ import 'ui/home_page.dart';
 import 'login_page.dart';
 
 
+import 'pages/discovery_page.dart';
+
 void main() {
   runApp(
     MultiProvider(
@@ -24,10 +26,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
+      title: 'Eon',
+
       title: 'Profile Setup',
+
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
       ),
+
+      home: const DiscoveryPage(),
+
 
       home: const ProfileFlowPage(),
     );
@@ -39,6 +49,7 @@ class MyApp extends StatelessWidget {
       home: const LoginPage(),
 
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
+
 
     );
   }
