@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'discovery_page.dart';
+
 import 'chat_page.dart';
 
 import 'profile_flow.dart';
@@ -14,7 +17,6 @@ import 'login_page.dart';
 import 'pages/discovery_page.dart';
 
 import 'pages/conversation_list_page.dart';
-
 
 void main() {
   runApp(
@@ -32,6 +34,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
 
+      title: 'Eon Demo',
+
+
       title: 'Eon Chat',
 
 
@@ -40,10 +45,14 @@ class MyApp extends StatelessWidget {
       title: 'Profile Setup',
 
 
+
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+
+      home: const DiscoveryPage(),
+
       home: const ChatPage(),
 
 
@@ -57,8 +66,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
 
       home: const LoginPage(),
 
