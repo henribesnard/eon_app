@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
 import 'pages/onboarding_page1.dart';
 
+import 'package:provider/provider.dart';
+
+import 'core/service_providers.dart';
+import 'ui/home_page.dart';
+
+
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: appProviders,
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -16,6 +27,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       home: const OnboardingPage1(),
+
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+
     );
   }
 }
