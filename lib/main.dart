@@ -2,8 +2,31 @@ import 'package:flutter/material.dart';
 import 'services/moderation_mock_service.dart';
 import 'services/block_mock_service.dart';
 
+import 'chat_page.dart';
+
+import 'profile_flow.dart';
+
+import 'package:provider/provider.dart';
+
+import 'core/service_providers.dart';
+import 'ui/home_page.dart';
+
+import 'login_page.dart';
+
+
+import 'pages/discovery_page.dart';
+
+import 'pages/conversation_list_page.dart';
+
+
+
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: appProviders,
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -11,20 +34,37 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return const MaterialApp(
       home: MyHomePage(title: 'Chat'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+    return MaterialApp(
+
+      title: 'Eon Chat',
+
+
+      title: 'Eon',
+
+      title: 'Profile Setup',
+
+
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const ChatPage(),
 
   final String title;
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
+      home: const ConversationListPage(),
+
+
+      home: const DiscoveryPage(),
+
+
 
 class _MyHomePageState extends State<MyHomePage> {
   final String _userId = 'user123';
@@ -43,7 +83,18 @@ class _MyHomePageState extends State<MyHomePage> {
       _messages.add(_controller.text);
       _controller.clear();
     });
+
+      home: const ProfileFlowPage(),
+    );
+
   }
+}
+
+
+
+      home: const LoginPage(),
+
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
 
   Future<void> _handleMenu(String value) async {
     if (value == 'report') {
@@ -139,6 +190,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
         ],
       ),
+
     );
   }
 }
+
