@@ -1,3 +1,9 @@
+
+class User {
+  final String phone;
+
+  User({required this.phone});
+
 import 'premium_status.dart';
 
 class User {
@@ -12,4 +18,5 @@ class User {
     required this.name,
     this.premiumStatus = PremiumStatus.free,
   });
+
 }
