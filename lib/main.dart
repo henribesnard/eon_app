@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'chat_page.dart';
+
 import 'profile_flow.dart';
 
 import 'package:provider/provider.dart';
@@ -12,6 +14,7 @@ import 'login_page.dart';
 import 'pages/discovery_page.dart';
 
 import 'pages/conversation_list_page.dart';
+
 
 void main() {
   runApp(
@@ -41,6 +44,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      home: const ChatPage(),
+
 
       home: const ConversationListPage(),
 
@@ -58,7 +63,6 @@ class MyApp extends StatelessWidget {
       home: const LoginPage(),
 
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
-
 
     );
   }
