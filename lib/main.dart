@@ -11,6 +11,8 @@ import 'login_page.dart';
 
 import 'pages/discovery_page.dart';
 
+import 'pages/conversation_list_page.dart';
+
 void main() {
   runApp(
     MultiProvider(
@@ -27,14 +29,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
 
+      title: 'Eon Chat',
+
+
       title: 'Eon',
 
       title: 'Profile Setup',
+
 
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+
+      home: const ConversationListPage(),
+
 
       home: const DiscoveryPage(),
 
