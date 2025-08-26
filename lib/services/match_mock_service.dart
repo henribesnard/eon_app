@@ -7,6 +7,6 @@ class MatchMockService {
   static Future<bool> tryMatch(Profile profile) async {
     // Simulate network delay.
     await Future.delayed(const Duration(milliseconds: 300));
-    return _likedMe.contains(profile.id);
+    return _likedMe.contains(profile.userId);
   }
 }

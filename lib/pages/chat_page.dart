@@ -20,7 +20,11 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      appBar: AppBar(title: Text('User ${widget.match.userBId}')),
+
       appBar: AppBar(title: Text(_service.matchName(widget.match))),
+
       body: Column(
         children: [
           Expanded(
@@ -28,7 +32,8 @@ class _ChatPageState extends State<ChatPage> {
               stream: _service.messagesStream(widget.match.id),
               builder: (context, snapshot) {
                 final messages = snapshot.data ?? [];
-                WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
+                WidgetsBinding.instance
+                    .addPostFrameCallback((_) => _scrollToBottom());
                 return ListView.builder(
                   controller: _scrollController,
                   itemCount: messages.length,
@@ -47,42 +52,22 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   Widget _buildMessage(Message msg) {
-    final alignment = msg.fromMe ? Alignment.centerRight : Alignment.centerLeft;
-    final color = msg.fromMe ? Colors.blue[200] : Colors.grey[300];
-    final statusText = msg.fromMe ? _statusText(msg.status) : '';
+    final isFromMe = msg.fromUserId == widget.match.userAId;
+    final alignment =
+        isFromMe ? Alignment.centerRight : Alignment.centerLeft;
+    final color = isFromMe ? Colors.blue[200] : Colors.grey[300];
     return Container(
       alignment: alignment,
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      child: Column(
-        crossAxisAlignment:
-            msg.fromMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Text(msg.text),
-          ),
-          if (statusText.isNotEmpty)
-            Text(statusText, style: const TextStyle(fontSize: 10)),
-        ],
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Text(msg.content),
       ),
     );
-  }
-
-  String _statusText(MessageStatus status) {
-    switch (status) {
-      case MessageStatus.sending:
-        return 'sending';
-      case MessageStatus.sent:
-        return 'sent';
-      case MessageStatus.delivered:
-        return 'delivered';
-      case MessageStatus.read:
-        return 'read';
-    }
   }
 
   Widget _buildInput() {
@@ -112,8 +97,9 @@ class _ChatPageState extends State<ChatPage> {
     if (text.isEmpty) return;
     final message = Message(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
-      text: text,
-      fromMe: true,
+      fromUserId: widget.match.userAId,
+      toUserId: widget.match.userBId,
+      content: text,
     );
     _service.send(widget.match.id, message);
     _textController.clear();

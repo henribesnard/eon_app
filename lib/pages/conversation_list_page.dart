@@ -18,7 +18,10 @@ class ConversationListPage extends StatelessWidget {
         itemBuilder: (context, index) {
           final Match match = matches[index];
           return ListTile(
+            title: Text('User ${match.userBId}'),
+
             title: Text(service.matchName(match)),
+
             onTap: () {
               Navigator.push(
                 context,
