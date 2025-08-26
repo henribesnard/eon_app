@@ -12,7 +12,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _phoneController = TextEditingController(text: '+261');
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final _authService = AuthMockService();
@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     final user = await _authService.login(
-      _phoneController.text,
+      _emailController.text,
       _passwordController.text,
     );
 
@@ -62,11 +62,11 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextFormField(
-                controller: _phoneController,
-                keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(labelText: 'Numéro de téléphone'),
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(labelText: 'Email'),
                 validator: (value) =>
-                    value == null || value.isEmpty ? 'Entrez le numéro' : null,
+                    value == null || value.isEmpty ? "Entrez l'email" : null,
               ),
               TextFormField(
                 controller: _passwordController,

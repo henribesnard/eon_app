@@ -1,9 +1,3 @@
-
-class User {
-  final String phone;
-
-  User({required this.phone});
-
 import 'premium_status.dart';
 
 class User {
@@ -12,11 +6,10 @@ class User {
   final String name;
   final PremiumStatus premiumStatus;
 
-  User({
+  const User({
     required this.id,
     required this.email,
     required this.name,
     this.premiumStatus = PremiumStatus.free,
   });
-
 }
