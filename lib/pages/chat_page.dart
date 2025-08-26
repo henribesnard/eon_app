@@ -20,7 +20,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.match.name)),
+      appBar: AppBar(title: Text(_service.matchName(widget.match))),
       body: Column(
         children: [
           Expanded(
