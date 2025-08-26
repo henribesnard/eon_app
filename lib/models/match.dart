@@ -11,3 +11,4 @@ class Match {
     DateTime? matchedOn,
   }) : matchedOn = matchedOn ?? DateTime.now();
 }
+

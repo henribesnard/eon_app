@@ -6,7 +6,7 @@ class User {
   final String name;
   final PremiumStatus premiumStatus;
 
-  User({
+  const User({
     required this.id,
     required this.email,
     required this.name,

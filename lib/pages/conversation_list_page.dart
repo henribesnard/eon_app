@@ -9,7 +9,8 @@ class ConversationListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final matches = ChatMockService().getMatches();
+    final service = ChatMockService();
+    final matches = service.getMatches();
     return Scaffold(
       appBar: AppBar(title: const Text('Matches')),
       body: ListView.builder(
@@ -18,6 +19,9 @@ class ConversationListPage extends StatelessWidget {
           final Match match = matches[index];
           return ListTile(
             title: Text('User ${match.userBId}'),
+
+            title: Text(service.matchName(match)),
+
             onTap: () {
               Navigator.push(
                 context,
