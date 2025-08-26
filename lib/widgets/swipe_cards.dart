@@ -50,7 +50,8 @@ class _SwipeCardsState extends State<SwipeCards> {
           children: [
             const Icon(Icons.person, size: 100),
             const SizedBox(height: 16),
-            Text(profile.name, style: const TextStyle(fontSize: 24)),
+            Text('User ${profile.userId}',
+                style: const TextStyle(fontSize: 24)),
           ],
         ),
       ),

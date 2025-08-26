@@ -14,9 +14,9 @@ class DiscoveryPage extends StatefulWidget {
 
 class _DiscoveryPageState extends State<DiscoveryPage> {
   final List<Profile> profiles = [
-    Profile(id: '1', name: 'Alice', imageUrl: ''),
-    Profile(id: '2', name: 'Bob', imageUrl: ''),
-    Profile(id: '3', name: 'Charlie', imageUrl: ''),
+    Profile(userId: '2', bio: 'Alice', age: 25),
+    Profile(userId: '3', bio: 'Bob', age: 30),
+    Profile(userId: '4', bio: 'Charlie', age: 28),
   ];
 
   Future<void> _onLike(Profile profile) async {

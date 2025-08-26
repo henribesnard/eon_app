@@ -1,11 +1,4 @@
 class Profile {
-
-  final String id;
-  final String name;
-  final String imageUrl;
-
-  Profile({required this.id, required this.name, required this.imageUrl});
-
   final String userId;
   String bio;
   int age;
@@ -15,5 +8,4 @@ class Profile {
     this.bio = '',
     this.age = 18,
   });
-
 }

@@ -9,9 +9,9 @@ class ChatMockService {
   ChatMockService._internal();
 
   final List<Match> _matches = [
-    Match(id: '1', name: 'Alice'),
-    Match(id: '2', name: 'Bob'),
-    Match(id: '3', name: 'Charlie'),
+    Match(id: '1', userAId: '1', userBId: '2'),
+    Match(id: '2', userAId: '1', userBId: '3'),
+    Match(id: '3', userAId: '1', userBId: '4'),
   ];
 
   final Map<String, List<Message>> _messages = {};
@@ -23,28 +23,14 @@ class ChatMockService {
     _controllers.putIfAbsent(
         conversationId, () => StreamController<List<Message>>.broadcast());
     _messages.putIfAbsent(conversationId, () => []);
-    // Emit current messages
-    _controllers[conversationId]!.add(List.from(_messages[conversationId]!));
+    _controllers[conversationId]!
+        .add(List<Message>.from(_messages[conversationId]!));
     return _controllers[conversationId]!.stream;
   }
 
   void send(String conversationId, Message message) {
     final list = _messages.putIfAbsent(conversationId, () => []);
     list.add(message);
-    _controllers[conversationId]?.add(List.from(list));
-
-    // simulate status updates
-    Future.delayed(const Duration(milliseconds: 300), () {
-      message.status = MessageStatus.sent;
-      _controllers[conversationId]?.add(List.from(list));
-    });
-    Future.delayed(const Duration(milliseconds: 600), () {
-      message.status = MessageStatus.delivered;
-      _controllers[conversationId]?.add(List.from(list));
-    });
-    Future.delayed(const Duration(milliseconds: 900), () {
-      message.status = MessageStatus.read;
-      _controllers[conversationId]?.add(List.from(list));
-    });
+    _controllers[conversationId]?.add(List<Message>.from(list));
   }
 }
