@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'translation_mock_service.dart';
 
-class Message {
-  Message({required this.text, required this.lang, this.translated});
+class TranslationMessage {
+  TranslationMessage({required this.text, required this.lang, this.translated});
   final String text;
   final String lang;
   String? translated;
@@ -17,7 +17,7 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-  final List<Message> _messages = [];
+  final List<TranslationMessage> _messages = [];
   final TextEditingController _controller = TextEditingController();
 
   String _detectLanguage(String text) {
@@ -32,7 +32,7 @@ class _ChatPageState extends State<ChatPage> {
     final text = _controller.text.trim();
     if (text.isEmpty) return;
     final lang = _detectLanguage(text);
-    final msg = Message(text: text, lang: lang);
+    final msg = TranslationMessage(text: text, lang: lang);
     if (widget.premium) {
       msg.translated = TranslationMockService.translate(text, lang, lang == 'en' ? 'mg' : 'en');
     }
@@ -42,7 +42,7 @@ class _ChatPageState extends State<ChatPage> {
     _controller.clear();
   }
 
-  void _translate(Message msg) {
+  void _translate(TranslationMessage msg) {
     msg.translated = TranslationMockService.translate(msg.text, msg.lang, msg.lang == 'en' ? 'mg' : 'en');
     setState(() {});
   }
